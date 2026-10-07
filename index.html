@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio de Yauheniya Laptsionak, prothésiste ongulaire à Toulouse.">
+<title>Portfolio Yauheniya Laptsionak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Mise en page : une colonne étroite d'en-tête, puis une galerie en grille 4:5, comme un book de prothésiste feuilleté sur téléphone. */
+:root {
+  --bg: #FDFAF1;          /* ivoire */
+  --fg: #3C2F2F;          /* café foncé */
+  --muted: #6E5E5B;
+  --accent: #670626;      /* bordeaux cerise */
+  --soft: #E3BFCB;        /* rose poudré */
+  --tile: #F3ECE0;
+  --line: #E6DCCF;
+  --overlay: rgba(28, 20, 20, 0.92);
+  --font-display: 'Prata', Georgia, 'Times New Roman', serif;
+  --font-body: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1F1918; --fg: #F2E9E1; --muted: #BBA9A4; --accent: #E3A5B8; --soft: #6B3A49;
+    --tile: #2A2221; --line: #3A2F2D; --overlay: rgba(10, 7, 7, 0.94); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1F1918; --fg: #F2E9E1; --muted: #BBA9A4; --accent: #E3A5B8; --soft: #6B3A49;
+  --tile: #2A2221; --line: #3A2F2D; --overlay: rgba(10, 7, 7, 0.94); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-inline: 16px; padding-block: 40px 56px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+header { display: flex; flex-direction: column; gap: 14px; max-width: 640px; }
+.role { font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 7vw, 56px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.intro { margin: 0; color: var(--fg); max-width: 60ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.facts li { font-size: 13.5px; padding: 6px 12px; border-radius: 999px; background: var(--tile); border: 1px solid var(--line); }
+.contact { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 15px; color: var(--muted); }
+.contact span { user-select: all; color: var(--fg); }
+section { display: flex; flex-direction: column; gap: 16px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+h2 { font-family: var(--font-display); font-weight: 400; font-size: 26px; margin: 0; }
+.count { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (min-width: 720px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; } }
+@media (min-width: 1000px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.grid button {
+  all: unset; cursor: zoom-in; display: block; aspect-ratio: 4 / 5; max-width: 100%;
+  border-radius: 6px; overflow: hidden; background: var(--tile);
+}
+.grid button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+.grid button:hover img { transform: scale(1.03); }
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+footer .sig { font-family: var(--font-display); color: var(--fg); font-size: 16px; }
+
+/* Visionneuse */
+.lb { position: fixed; inset: 0; background: var(--overlay); display: flex; align-items: center; justify-content: center; z-index: 10;
+  padding: calc(env(safe-area-inset-top, 0px) + 56px) 12px calc(env(safe-area-inset-bottom, 0px) + 56px); }
+.lb img { max-width: min(100%, 900px); max-height: 100%; object-fit: contain; border-radius: 4px; }
+.lb .ctl { position: absolute; display: flex; gap: 8px; }
+.lb .top { top: calc(env(safe-area-inset-top, 0px) + 10px); right: 12px; }
+.lb .nav { bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); left: 50%; transform: translateX(-50%); align-items: center; }
+.lb button { font: 500 15px var(--font-body); color: #F7EFE8; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px; min-width: 44px; height: 44px; padding: 0 16px; cursor: pointer; }
+.lb button:hover { background: rgba(255,255,255,0.22); }
+.lb button:focus-visible { outline: 2px solid #F7EFE8; outline-offset: 2px; }
+.lb .pos { color: #F7EFE8; font-size: 14px; font-variant-numeric: tabular-nums; min-width: 64px; text-align: center; }
+@media (prefers-reduced-motion: reduce) { .grid img { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="role">Prothésiste ongulaire · Toulouse</p>
+    <h1>Yauheniya Laptsionak</h1>
+    <p class="intro">Une sélection de mes réalisations : manucure russe, vernis semi-permanent, gainage gel, nail art et pédicure. Photos de mon travail, sans retouche du résultat.</p>
+    <ul class="facts">
+      <li>Depuis 2016</li>
+      <li>Qualification d'État en manucure et pédicure</li>
+      <li>Salons à Minsk et Cracovie</li>
+    </ul>
+  </header>
+
+  <section aria-label="Réalisations">
+    <div class="grid" id="g-all"></div>
+  </section>
+
+  <footer><span class="sig">Yauheniya Laptsionak</span> · prothésiste ongulaire, Toulouse</footer>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo agrandie">
+  <div class="ctl top"><button type="button" id="lb-close" aria-label="Fermer">Fermer</button></div>
+  <img id="lb-img" alt="">
+  <div class="ctl nav">
+    <button type="button" id="lb-prev" aria-label="Photo précédente">‹</button>
+    <span class="pos" id="lb-pos"></span>
+    <button type="button" id="lb-next" aria-label="Photo suivante">›</button>
+  </div>
+</div>
+
+<script>
+const mains = [
+  ['IMG_2290', 'Manucure, vernis bleu ciel'],
+  ['IMG_8901', 'Ongles laiteux à lignes fines, pivoines'],
+  ['IMG_8890', 'Amande nude nacrée'],
+  ['IMG_1906', 'Semi-permanent bleu nuit'],
+  ['IMG_8895', 'Dégradé rose et blanc'],
+  ['IMG_2737', 'Amande longue rose fuchsia'],
+  ['IMG_3051', 'Pédicure, rouge orangé'],
+  ['IMG_8882', 'Amande laiteuse mouchetée'],
+  ['IMG_1497', 'Noir brillant, ongles courts'],
+  ['IMG_5345', 'Rouge vif, forme stiletto'],
+  ['IMG_2689', 'Beige moucheté noir'],
+  ['IMG_1928', 'Babyboomer et paillettes'],
+  ['IMG_8894', 'Amande rose nacré'],
+  ['IMG_8899', 'Nail art cœurs'],
+  ['IMG_6339', 'Pédicure, bordeaux et nail art'],
+  ['IMG_2833', 'Dégradé rose chromé'],
+  ['IMG_7531', 'Nail art graphique, tons orangés'],
+  ['IMG_8454', 'Nail art multicolore'],
+  ['IMG_2289', 'Rouge, ongles carrés'],
+  ['IMG_1312', 'Blanc et rose fluo'],
+  ['IMG_7955', 'Nude et nail art minimaliste'],
+  ['IMG_7071', 'Lignes fines vertes et bleues'],
+  ['IMG_7626', 'Lilas dégradé'],
+  ['FT', 'Blanc laiteux, arabesques bleues'],
+];
+const all = [];
+function fill(list, gridId) {
+  const g = document.getElementById(gridId);
+  list.forEach(([f, alt]) => {
+    const i = all.length; all.push([f, alt]);
+    const b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', 'Agrandir : ' + alt);
+    const img = document.createElement('img');
+    img.src = 'img/' + f + '.jpg'; img.alt = alt; img.loading = i < 8 ? 'eager' : 'lazy';
+    b.appendChild(img); b.addEventListener('click', () => open(i));
+    g.appendChild(b);
+  });
+}
+fill(mains, 'g-all');
+
+const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'), lbPos = document.getElementById('lb-pos');
+let cur = 0, lastFocus = null;
+function show(i) {
+  cur = (i + all.length) % all.length;
+  lbImg.src = 'img/' + all[cur][0] + '.jpg'; lbImg.alt = all[cur][1];
+  lbPos.textContent = (cur + 1) + ' / ' + all.length;
+}
+function open(i) { lastFocus = document.activeElement; show(i); lb.hidden = false; document.getElementById('lb-close').focus(); }
+function close() { lb.hidden = true; if (lastFocus) lastFocus.focus(); }
+document.getElementById('lb-close').onclick = close;
+document.getElementById('lb-prev').onclick = () => show(cur - 1);
+document.getElementById('lb-next').onclick = () => show(cur + 1);
+lb.addEventListener('click', e => { if (e.target === lb) close(); });
+lb.addEventListener('keydown', e => {
+  if (e.key === 'Escape') close();
+  else if (e.key === 'ArrowLeft') show(cur - 1);
+  else if (e.key === 'ArrowRight') show(cur + 1);
+});
+let x0 = null;
+lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', e => {
+  if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null;
+  if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1));
+});
+</script>
+</body>
+</html>
