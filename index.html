@@ -18,7 +18,7 @@
   --soft: #E3BFCB;        /* rose poudré */
   --tile: #F3ECE0;
   --line: #E6DCCF;
-  --overlay: rgba(28, 20, 20, 0.92);
+  --overlay: rgba(28, 20, 20, 0.96);
   --font-display: 'Prata', Georgia, 'Times New Roman', serif;
   --font-body: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
   color-scheme: light;
@@ -34,6 +34,9 @@
   --tile: #2A2221; --line: #3A2F2D; --overlay: rgba(10, 7, 7, 0.94); color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+img { max-width: 100%; }
 body {
   background: var(--bg); color: var(--fg);
   font-family: var(--font-body); font-size: 16px; line-height: 1.55;
